@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+  export default async function handler(req, res) {
     const path = req.url.replace(/^\/api\/proxy/, '');
     const target = `http://sofitel-ai.ci.ciandt.tech:9000/${path}`;
     const response = await fetch(target, {
