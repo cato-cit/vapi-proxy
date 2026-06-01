@@ -1,9 +1,12 @@
-  export default async function handler(req, res) {
+export default async function handler(req, res) {
     const target = `http://sofitel-ai.ci.ciandt.tech:9000${req.url}`;
     try {
+      const headers = { ...req.headers };
+      delete headers['host'];
+
       const fetchOptions = {
         method: req.method,
-        headers: { 'content-type': req.headers['content-type'] || 'application/json' },
+        headers,
       };
       if (req.method !== 'GET' && req.method !== 'HEAD') {
         fetchOptions.body = JSON.stringify(req.body);
