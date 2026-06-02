@@ -1,9 +1,9 @@
-  // Serverless Node.js (not edge) — proxies staff SSE from CI backend
+  // Serverless Node.js (not edge) — proxies guest room SSE from CI backend
   export const config = { maxDuration: 60, supportsResponseStreaming: true };
 
   export default async function handler(req, res) {
-    const token = new URL(req.url, 'http://localhost').searchParams.get('token');
-    const target = `http://sofitel-ai.ci.ciandt.tech:9000/api/stream${token ? `?token=${encodeURIComponent(token)}` : ''}`;
+    const roomId = req.query.roomId;
+    const target = `http://sofitel-ai.ci.ciandt.tech:9000/api/room-events/${roomId}`;
 
     let upstream;
     try {
