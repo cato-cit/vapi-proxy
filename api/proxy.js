@@ -10,12 +10,12 @@
 
   export default async function handler(req, res) {
     // API 路由不拦截（Vapi、登录等都走 /api/）
-    if (!req.url.startsWith('/api/')) {
-      if (!checkAuth(req)) {
-        res.setHeader('WWW-Authenticate', 'Basic realm="Sofitel POC"');
-        return res.status(401).send('Unauthorized');
-      }
-    }
+    // if (!req.url.startsWith('/api/')) {
+    //   if (!checkAuth(req)) {
+    //     res.setHeader('WWW-Authenticate', 'Basic realm="Sofitel POC"');
+    //     return res.status(401).send('Unauthorized');
+    //   }
+    // }
 
     const target = `http://sofitel-ai.ci.ciandt.tech:9000${req.url}`;
     try {
